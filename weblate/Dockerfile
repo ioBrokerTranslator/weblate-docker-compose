@@ -13,6 +13,8 @@ RUN \
 
 COPY weblate_iobroker /app/iobroker/python/weblate_iobroker/
 
+RUN chmod a+rx /app/iobroker/python/weblate_iobroker/scripts/*.sh
+
 # Search path for our addons
 RUN echo "/app/iobroker/python" > /usr/local/lib/python3.7/dist-packages/iobroker-weblate.pth
 
