@@ -31,6 +31,9 @@ WEBLATE_REGISTRATION_OPEN=1
 #WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR
 #WEBLATE_REQUIRE_LOGIN=1
 
+# ioBroker Addons
+WEBLATE_ADD_ADDONS=weblate_iobroker.addons.GenerateWordsJS
+
 # LDAP Auth
 #WEBLATE_AUTH_LDAP_SERVER_URI=ldap://ldap.example.org
 #WEBLATE_AUTH_LDAP_USER_DN_TEMPLATE=uid=%(user)s,ou=People,dc=example,dc=net

@@ -1,0 +1,20 @@
+FROM weblate/weblate
+
+# install Node.js
+USER root
+
+RUN \
+  export DEBIAN_FRONTEND=noninteractive \
+  && apt-get update \
+  && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+  && apt-get install --no-install-recommends -y \
+    nodejs \
+  && npm i -g gulp
+
+COPY weblate_iobroker /app/iobroker/python/weblate_iobroker/
+
+# Search path for our addons
+RUN echo "/app/iobroker/python" > /usr/local/lib/python3.7/dist-packages/iobroker-weblate.pth
+
+# switch back to user "weblate"
+USER 1000
