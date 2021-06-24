@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2019 Samuel Weibel <samuel.weibel@gmail.com>
+# Copyright (c) 2021 Samuel Weibel <samuel.weibel@gmail.com>
 #
 """
 ioBroker scripts
@@ -19,7 +19,7 @@ class GenerateWordsJS(BaseScriptAddon):
     name = 'iobroker.weblate.gulp.adminLanguages2words'
     # Verbose name and long descrption
     verbose = _('ioBroker: Save translations into words.js')
-    description = _('This addon runs "gulp adminLanguages2words" before a commit.')
+    description = _('This addon runs "npm run translate adminLanguages2words" or "gulp adminLanguages2words" before a commit.')
 
     # Script to execute
     script = '/app/iobroker/python/weblate_iobroker/scripts/save-to-words.sh'
