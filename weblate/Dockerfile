@@ -9,6 +9,7 @@ RUN \
   && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install --no-install-recommends -y \
     nodejs \
+    jq \
   && npm i -g gulp
 
 COPY weblate_iobroker /app/iobroker/python/weblate_iobroker/
