@@ -1,4 +1,4 @@
-FROM weblate/weblate
+FROM weblate/weblate:4.7.1-1
 
 # install Node.js
 USER root
