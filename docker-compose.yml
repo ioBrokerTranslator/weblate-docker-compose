@@ -1,28 +1,46 @@
 version: "3"
 services:
   weblate:
-    build: weblate
+    image: ghcr.io/iobrokertranslator/weblate:master
     volumes:
       - weblate-data:/app/data
     env_file:
       - ./environment
-    restart: always
+    restart: unless-stopped
     depends_on:
       - database
       - cache
+    labels:
+      com.centurylinklabs.watchtower.scope: "ghcr"
   database:
     image: postgres:12-alpine
     env_file:
       - ./environment
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    restart: always
+    restart: unless-stopped
+    labels:
+      com.centurylinklabs.watchtower.scope: "dockerhub"
   cache:
     image: redis:6-alpine
-    restart: always
+    restart: unless-stopped
     command: ["redis-server", "--appendonly", "yes"]
     volumes:
       - redis-data:/data
+    labels:
+      com.centurylinklabs.watchtower.scope: "dockerhub"
+  watchtower-dockerhub:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+    command: --cleanup --interval 300 --stop-timeout 30s --scope dockerhub
+  watchtower-ghcr:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+    command: --cleanup --interval 300 --stop-timeout 30s --scope ghcr
 volumes:
   weblate-data: {}
   postgres-data: {}
